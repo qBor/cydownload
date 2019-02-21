@@ -36,7 +36,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Open Repo</string>
+         <string>Ouvrir un repo</string>
         </property>
        </widget>
       </item>
@@ -52,7 +52,7 @@
          <string notr="true">border: 2px solid #e50000;</string>
         </property>
         <property name="text">
-         <string>Delete Repo</string>
+         <string>Supprimer un repo</string>
         </property>
        </widget>
       </item>
@@ -61,7 +61,7 @@
     <item>
      <widget class="QPushButton" name="btn_new_repo">
       <property name="text">
-       <string>New Repo</string>
+       <string>Nouveau repo</string>
       </property>
      </widget>
     </item>

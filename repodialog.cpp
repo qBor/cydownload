@@ -58,7 +58,7 @@ void RepoDialog::on_tree_sections_currentItemChanged(QTreeWidgetItem *current, Q
         ui->txt_pkg_maintainer->setText("");
         ui->txt_pkg_description->textCursor().document()->setPlainText("");
         ui->cmb_pkg_version->setCurrentIndex(-1);
-        ui->btn_download->setText("Download .deb");
+        ui->btn_download->setText("Télécharger le .deb");
         ui->btn_download->setEnabled(false);
         disablePackageInfoPanel();
         return;
@@ -89,12 +89,12 @@ void RepoDialog::on_tree_sections_currentItemChanged(QTreeWidgetItem *current, Q
 
     if (latestPackage.tags.contains("cydia::commercial"))
     {
-        ui->btn_download->setText("Cannot download commercial packages!");
+        ui->btn_download->setText("Impossible de télécharger des paquets commerciaux !");
         ui->btn_download->setEnabled(false);
     }
     else
     {
-        ui->btn_download->setText("Download .deb");
+        ui->btn_download->setText("Télécharger le .deb");
         ui->btn_download->setEnabled(true);
     }
 }
@@ -144,7 +144,7 @@ void RepoDialog::on_btn_download_clicked()
     QFileDialog fd;
     fd.setFileMode(QFileDialog::Directory);
     fd.setOption(QFileDialog::ShowDirsOnly);
-    fd.setWindowTitle("Select download folder");
+    fd.setWindowTitle("Selectionner un dossier de sauvegarde");
     if (!fd.exec())
         return;
     QString dlDir = fd.selectedUrls().at(0).toLocalFile();
@@ -158,7 +158,7 @@ void RepoDialog::on_btn_download_clicked()
     QString url = "";
     for (it=clickedPackage.begin();it != clickedPackage.end();it++)
     {
-        Logger::log("Checking "+it->first+" against "+ui->cmb_pkg_version->currentText());
+        Logger::log("Vérification de "+it->first+" encore "+ui->cmb_pkg_version->currentText());
         if (it->first == ui->cmb_pkg_version->currentText())
         {
             //found it! get the package filename
@@ -171,8 +171,8 @@ void RepoDialog::on_btn_download_clicked()
     QString dlFile = QDir::cleanPath(dlDir + QDir::separator() + pkgFile);
 
     //start the download
-    Logger::log("Downloading " + pkgFile);
-    ui->btn_download->setText("downloading...");
+    Logger::log("Téléchargement de " + pkgFile);
+    ui->btn_download->setText("téléchargement...");
     ui->tree_sections->setEnabled(false);
     m_dler->startDownload(url, dlFile);
 }
@@ -182,17 +182,17 @@ void RepoDialog::downloadComplete(bool success, QString errMsg)
     QMessageBox mb;
     if (success)
     {
-        mb.setText("Download complete!");
-        Logger::log("Download complete");
+        mb.setText("Téléchargement complet!");
+        Logger::log("Téléchargement complet!");
     }
     else
     {
-        mb.setText("Download failed! Please see log window");
-        Logger::log("Download failed: " + errMsg);
+        mb.setText("Echec de téléchargement, veuillez regarder les logs");
+        Logger::log("Echec de téléchargement: " + errMsg);
     }
     mb.setStandardButtons(QMessageBox::Ok);
     mb.exec();
-    ui->btn_download->setText("Download .deb");
+    ui->btn_download->setText("Télécharger le .deb");
     ui->tree_sections->setEnabled(true);
 }
 

@@ -28,14 +28,14 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Repo Name</string>
+        <string>Nom du repo</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Repo Description</string>
+        <string>Description du repo</string>
        </property>
       </widget>
      </item>
@@ -73,7 +73,7 @@
          <item>
           <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>Search by Name</string>
+            <string>Recherche par nom</string>
            </property>
           </widget>
          </item>
@@ -110,7 +110,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Selected Package Info</string>
+          <string>Info du paquet selectionné</string>
          </property>
         </widget>
        </item>
@@ -122,7 +122,7 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Name</string>
+            <string>Nom</string>
            </property>
           </widget>
          </item>
@@ -136,7 +136,7 @@
          <item row="2" column="0">
           <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Maintainer</string>
+            <string>Responsable</string>
            </property>
           </widget>
          </item>
@@ -199,7 +199,7 @@
          <item row="4" column="0">
           <widget class="QLabel" name="label_9">
            <property name="text">
-            <string>Package Size</string>
+            <string>Taille du paquet</string>
            </property>
           </widget>
          </item>
@@ -218,7 +218,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Download .deb</string>
+          <string>Telecharger le .deb</string>
          </property>
         </widget>
        </item>

@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     if (!m_tmpDir.isValid())
     {
         QMessageBox b;
-        b.setText("ERROR: Could not create temporary files directory");
+        b.setText("ERREUR : Impossible de créer un répertoire de fichiers temporaires");
         b.exec();
         exit(1);
     }
@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QFile f(REPO_URL_FILE_PATH);
     if (f.exists() && f.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        ui->cmb_repo_urls->insertItem(0, "Select a Repository");
+        ui->cmb_repo_urls->insertItem(0, "Selectionner un dépôt");
         while (!f.atEnd())
         {
             QString curUrl = f.readLine().trimmed();
@@ -69,19 +69,19 @@ void MainWindow::downloadComplete(bool success, QString errMsg)
             break;
         }
         else
-            Logger::log("Done");
+            Logger::log("Fait !");
         //start downloading the package list
-        Logger::log("Getting package list...");
+        Logger::log("Obtention de la liste du paquet...");
         m_dling = PACKAGES;
         m_dl->startDownload(helpers::urlCombine(m_url, "Packages.bz2"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.bz2"));
         break;
     case RELEASE_DEBIAN:
         if (!success)
-            Logger::log("No Release file could be found, repo information will be blank");
+            Logger::log("Aucun fichier de libération n'a été trouvé, les informations du dépôt sont vide");
         else
-            Logger::log("Done");
+            Logger::log("Fait !");
         //start downloading the package list
-        Logger::log("Getting package list...");
+        Logger::log("Obtention de la liste du paquet...");
         m_dling = PACKAGES;
         m_dl->startDownload(helpers::urlCombine(m_url, "Packages.bz2"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.bz2"));
         break;
@@ -95,10 +95,10 @@ void MainWindow::downloadComplete(bool success, QString errMsg)
         //extract the Packages list
         if (!helpers::decompress(QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.bz2"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages")))
         {
-            Logger::log("Error extracting Packages.bz2");
+            Logger::log("Erreur d'extraction du Packages.bz2");
             break;
         }
-        Logger::log("Done");
+        Logger::log("Fait !");
         repoInfoDownloaded();
         m_dling = PACKAGE;
         break;
@@ -112,10 +112,10 @@ void MainWindow::downloadComplete(bool success, QString errMsg)
         //extract the Packages list
         if (!helpers::decompress(QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.bz2"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages")))
         {
-            Logger::log("Error extracting Packages.bz2");
+            Logger::log("Erreur d'extraction du Packages.bz2");
             break;
         }
-        Logger::log("Done");
+        Logger::log("Fait !");
         repoInfoDownloaded();
         m_dling = PACKAGE;
         break;
@@ -129,24 +129,24 @@ void MainWindow::downloadComplete(bool success, QString errMsg)
         //extract the Packages list
         if (!helpers::decompress(QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.gz"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages")))
         {
-            Logger::log("Error extracting Packages.bz2");
+            Logger::log("Erreur d'extraction du Packages.bz2");
             break;
         }
-        Logger::log("Done");
+        Logger::log("Fait !");
         repoInfoDownloaded();
         m_dling = PACKAGE;
         break;
     case PACKAGESGZ_DEBIAN:
         if (!success)
         {
-            Logger::log("Not a valid Cydia repository!");
+            Logger::log("Ce n'est pas un dépôt Cydia valide !");
             m_dling = NONE;
             break;
         }
         //extract the Packages list
         if (!helpers::decompress(QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages.gz"), QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Packages")))
         {
-            Logger::log("Error extracting Packages.gz");
+            Logger::log("Erreur d'extraction du Packages.bz2");
             break;
         }
         Logger::log("Done");
@@ -183,7 +183,7 @@ void MainWindow::repoInfoDownloaded()
         QFile *rFile = new QFile(releaseFile);
         if (!rFile->open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            Logger::log("Failed opening Release file");
+            Logger::log("Échec d'ouverture du fichier de libération");
             return;
         }
 
@@ -226,7 +226,7 @@ void MainWindow::repoInfoDownloaded()
     QFile *pFile = new QFile(packagesFile);
     if (!pFile->open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        Logger::log("Failed opening Packages file");
+        Logger::log("Echec d'ouverture du fichier du paquet");
         return;
     }
 
@@ -324,7 +324,7 @@ void MainWindow::on_btn_open_repo_clicked()
         fileUrl = QDir::cleanPath(m_tmpDir.path() + QDir::separator() + "Release");
 
         //start the download
-        Logger::log("Getting repo information...");
+        Logger::log("Obtention des données du dépôt...");
         m_dling = RELEASE;
         m_dl->startDownload(networkUrl, fileUrl);
 }
