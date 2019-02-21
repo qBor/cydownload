@@ -1,11 +1,13 @@
-Built with Qt 5.10
+# Traduit en français
 
-Tested and working builds on:
+Construit avec Qt 5.10
+
+Testé et fonctionnel sur
 * OSX
 * Windows (MinGW 5.3.0 kit)
 * Linux
 
-# Building and running
+# Construction et execution
 
 ## Linux
 `git clone https://github.com/borishonman/cydownload.git`
@@ -16,4 +18,4 @@ Tested and working builds on:
 
 `make`
 
-Type `./cydownload` to run.
+Écrire `./cydownload` pour lancer
